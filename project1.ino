@@ -63,8 +63,8 @@ void loop() {
     buzzBlink(green);
   //Yellow Signal
     digitalWrite(yellow, HIGH);
-    delay(3000);
-    digitalWrite(yellow, LOW);
+    delay(2000);
+    buzzBlink(yellow);
   //Red Signal
     digitalWrite(red, HIGH);
     delay(17000);
