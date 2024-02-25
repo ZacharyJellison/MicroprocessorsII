@@ -37,6 +37,18 @@ void buzzBlink(int flash){
   digitalWrite(buzzer, LOW);
 }
 
+void buzzBlinkINV(int flash){   //Special for the 3 second yellow so that it starts and ends on
+  digitalWrite(buzzer, HIGH);
+  digitalWrite(flash, HIGH);
+  delay(1000);
+  digitalWrite(flash, LOW);
+  delay(1000);
+  digitalWrite(flash, HIGH);
+  delay(1000);
+  digitalWrite(buzzer, LOW);
+  digitalWrite(flash, LOW);
+}
+
 void loop() {
   toggle = digitalRead(button);         //Set Button read to toggle
 
@@ -62,9 +74,7 @@ void loop() {
     delay(9000);
     buzzBlink(green);
   //Yellow Signal
-    digitalWrite(yellow, HIGH);
-    delay(2000);
-    buzzBlink(yellow);
+    buzzBlinkINV(yellow);
   //Red Signal
     digitalWrite(red, HIGH);
     delay(17000);
