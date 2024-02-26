@@ -18,6 +18,9 @@ void setup() {
   pinMode(buzzer, OUTPUT);
 
   pinMode(button, INPUT);
+
+  //Interrupt
+  attachInterrupt(digitalPinToInterrupt(button), safetyChange, RISING);
 }
 
 //Needed for Interrupt function to work
@@ -55,8 +58,6 @@ void buzzBlink(int ledPin, bool flash = true, bool buzz = true){
 
 void loop() {
   toggle = digitalRead(button);         //Set Button read to toggle
-//Interrupt
-  attachInterrupt(digitalPinToInterrupt(button), safetyChange, RISING);
 
 //Blinking red waiting for Button Press to Begin
   while(safety == 0){
