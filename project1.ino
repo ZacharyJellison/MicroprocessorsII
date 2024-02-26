@@ -26,27 +26,25 @@ void safetyChange(){
 }
 
 //Buzzer Sound and blink
-void buzzBlink(int flash){
-  digitalWrite(buzzer, HIGH);
-  digitalWrite(flash, LOW);
+void buzzBlink(int ledPin, bool flash = true, bool buzz = true){
+  if (buzz == true) {
+    digitalWrite(buzzer, HIGH);
+  }
+  if (flash == true) {
+    digitalWrite(ledPin, LOW);
+  }
   delay(1000);
-  digitalWrite(flash, HIGH);
+  if (flash == true) {
+    digitalWrite(ledPin, HIGH);
+  }
+  delay(1000);  
+  if (flash == true) {
+    digitalWrite(ledPin, LOW);
+  }
   delay(1000);
-  digitalWrite(flash, LOW);
-  delay(1000);
-  digitalWrite(buzzer, LOW);
-}
-
-void buzzBlinkINV(int flash){   //Special for the 3 second yellow so that it starts and ends on
-  digitalWrite(buzzer, HIGH);
-  digitalWrite(flash, HIGH);
-  delay(1000);
-  digitalWrite(flash, LOW);
-  delay(1000);
-  digitalWrite(flash, HIGH);
-  delay(1000);
-  digitalWrite(buzzer, LOW);
-  digitalWrite(flash, LOW);
+  if (buzz == true) {
+    digitalWrite(buzzer, LOW);
+  }
 }
 
 void loop() {
@@ -74,7 +72,7 @@ void loop() {
     delay(9000);
     buzzBlink(green);
   //Yellow Signal
-    buzzBlinkINV(yellow);
+    buzzBlink(yellow, false);
   //Red Signal
     digitalWrite(red, HIGH);
     delay(17000);
