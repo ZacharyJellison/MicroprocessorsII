@@ -27,6 +27,9 @@ void safetyChange(){
 
 //Buzzer Sound and blink
 void buzzBlink(int ledPin, bool flash = true, bool buzz = true){
+  if (flash == false){
+    digitalWrite(ledPin, HIGH);
+  }
   if (buzz == true) {
     digitalWrite(buzzer, HIGH);
   }
@@ -45,15 +48,18 @@ void buzzBlink(int ledPin, bool flash = true, bool buzz = true){
   if (buzz == true) {
     digitalWrite(buzzer, LOW);
   }
+  if (flash == false){
+    digitalWrite(ledPin, LOW);
+  }
 }
 
 void loop() {
   toggle = digitalRead(button);         //Set Button read to toggle
+//Interrupt
+  attachInterrupt(digitalPinToInterrupt(button), safetyChange, RISING);
 
 //Blinking red waiting for Button Press to Begin
   while(safety == 0){
-  //Interrupt
-    attachInterrupt(digitalPinToInterrupt(button), safetyChange, RISING);
 
   //Blink
     digitalWrite(red, HIGH);
