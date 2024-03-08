@@ -9,13 +9,13 @@ import turtle
 import time
 import random
 # TODO uncomment the following line to use pyserial package
-#import serial
+import serial
 
 # Note the serial port dev file name
 # need to change based on the particular host machine
 # TODO uncomment the following two lines to initialize serial port
 #serialDevFile = '/dev/cu.usbmodem14201'
-#ser=serial.Serial(serialDevFile, 9600, timeout=0)
+ser=serial.Serial("COM7", 9600, timeout = 0)
 
 delay = 0.1
 
@@ -109,12 +109,22 @@ while True:
     # you need to add your code to read control information from serial port
     # then use that information to set head.direction
     # For example, 
-    # if control_information == 'w':
-    #     head.direction = "up"
-    # elif control_information == 's':
-    #     head.direction = "down"
-    # elif ......
-    #
+    # print(ser.read())
+    # print(ser.readline())
+    line = ser.readline()
+    control_information = line.decode("utf-8")
+
+    print(line.decode("utf-8"))
+    
+    if control_information == 'w':
+        head.direction = "up"
+    elif control_information == 's':
+        head.direction = "down"
+    elif control_information == 'a':
+        head.direction = "left"
+    elif control_information == 'd':
+        head.direction = "right"
+    
 
     # Check for a collision with the border
     if head.xcor()>290 or head.xcor()<-290 or head.ycor()>290 or head.ycor()<-290:
