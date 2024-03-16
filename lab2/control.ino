@@ -1,11 +1,9 @@
 #include <Wire.h>
 #include <MPU6050.h> 
 
-//testing getting output from joystick on the arduino1
+//testing getting output from joystick on the arduino
 int VRx_pin = A0;
 int VRy_pin = A1;
-int xPosition = 0;
-int yPosition = 0;
 
 int buzz = 4;
 int incomingByte = 0;
@@ -29,8 +27,8 @@ void checkSettings() {
 
 void joystick() {
 
-  xPosition = analogRead(VRx_pin);
-  yPosition = analogRead(VRy_pin);
+  int xPosition = analogRead(VRx_pin);
+  int yPosition = analogRead(VRy_pin);
 
   if(yPosition >= 800 && yPosition <= 1023){
     Serial.print("w");
