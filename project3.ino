@@ -30,7 +30,7 @@ LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 // uRTCLib rtc;
 uRTCLib rtc(0x68);
 
-void buttPress(){
+void buttonPressF(){
   if (buttonPress == 0){
     buttonPress = 1;
   }
@@ -45,7 +45,7 @@ void buttPress(){
 void setup() {
   Serial.begin(9600);
   sampling_period_us = round(1000000 * (1.0 / SAMPLING_FREQUENCY));
-  attachInterrupt(digitalPinToInterrupt(2), buttPress, RISING);
+  attachInterrupt(digitalPinToInterrupt(2), buttonPressF, RISING);
 
   delay(3000); // wait for console opening
 
